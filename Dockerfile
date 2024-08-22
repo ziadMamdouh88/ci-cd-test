@@ -14,4 +14,4 @@ RUN pip install Flask
 EXPOSE 8080
 
 # Define the command to run the application
-CMD ["python", "app.py"]
+CMD ["python", "hello.py"]
