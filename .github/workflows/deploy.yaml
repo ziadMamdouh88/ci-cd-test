@@ -8,11 +8,11 @@ on:
 jobs:
   build:
     runs-on: self-hosted
+
     steps:
       - name: Set Git Safe Directory
         run: git config --global --add safe.directory D:/actions-runner/_work/ci-cd-test/ci-cd-test
 
-    steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -33,5 +33,4 @@ jobs:
           tags: ziadmamdouh/ci-cd-test:latest
 
       - name: Deploy to Minikube
-        run: |
-          kubectl apply -f deployment.yaml
+        run: kubectl apply -f deployment.yaml
