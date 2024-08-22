@@ -10,15 +10,13 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      # Set PowerShell execution policy to avoid script execution issues
+      # Set PowerShell Execution Policy (Using default Windows PowerShell)
       - name: Set PowerShell Execution Policy
         run: Set-ExecutionPolicy RemoteSigned -Scope Process -Force
-        shell: pwsh
 
       # Set Git Safe Directory
       - name: Set Git Safe Directory
         run: git config --global --add safe.directory D:/actions-runner/_work/ci-cd-test/ci-cd-test
-        shell: pwsh
 
       # Checkout code from the repository
       - name: Checkout code
