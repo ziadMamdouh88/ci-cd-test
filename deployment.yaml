@@ -14,6 +14,8 @@ spec:
     spec:
       containers:
       - name: my-python-app
-        image: ziadmamdouh88/ci-cd-test:latest  # Update this line
+        image: ziadmamdouh/ci-cd-test:latest # Update this line
         ports:
         - containerPort: 8080
+
+   
