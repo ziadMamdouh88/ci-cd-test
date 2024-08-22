@@ -19,11 +19,29 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Log in to Docker Hub with retry
+        shell: powershell
+        run: |
+          $maxRetries = 5
+          $retryCount = 0
+          $success = $false
+          
+          while ($retryCount -lt $maxRetries -and -not $success) {
+            Write-Output "Attempt $($retryCount + 1): Logging in to Docker Hub..."
+            echo $env:DOCKER_ACCESS_TOKEN | docker login --username ziadmamdouh --password-stdin
+            if ($LASTEXITCODE -eq 0) {
+              $success = $true
+            } else {
+              Write-Output "Login failed. Retrying in 15 seconds..."
+              Start-Sleep -Seconds 15
+              $retryCount++
+            }
+          }
+
+          if (-not $success) {
+            Write-Error "Failed to log in to Docker Hub after $maxRetries attempts."
+            exit 1
+          }
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
