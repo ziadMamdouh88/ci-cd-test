@@ -14,8 +14,6 @@ spec:
     spec:
       containers:
       - name: my-python-app
-        image: ziadmamdouh/ci-cd-test:latest  # Correct image name and tag
+        image: ziadmamdouh/ci-cd-test:latest  # Make sure this matches your Docker Hub image
         ports:
-          - containerPort: 8080
-
-   
+        - containerPort: 8080
