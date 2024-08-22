@@ -9,6 +9,10 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
+      - name: Set Git Safe Directory
+        run: git config --global --add safe.directory D:/actions-runner/_work/ci-cd-test/ci-cd-test
+
+    steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
