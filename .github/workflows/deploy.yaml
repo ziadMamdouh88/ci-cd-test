@@ -28,11 +28,11 @@ jobs:
           
           while ($retryCount -lt $maxRetries -and -not $success) {
             Write-Output "Attempt $($retryCount + 1): Logging in to Docker Hub..."
-            $result = docker login --username $env:DOCKER_USERNAME --password $env:DOCKER_PASSWORD 2>&1
+            echo $env:DOCKER_PASSWORD | docker login --username ziadmamdouh --password-stdin
             if ($LASTEXITCODE -eq 0) {
               $success = $true
             } else {
-              Write-Output "Login failed: $result"
+              Write-Output "Login failed. Retrying in 15 seconds..."
               Start-Sleep -Seconds 15
               $retryCount++
             }
@@ -43,7 +43,6 @@ jobs:
             exit 1
           }
         env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push Docker image
