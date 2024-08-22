@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -28,6 +28,6 @@ jobs:
           push: true
           tags: ziadmamdouh/ci-cd-test:latest
 
-      - name: Deploy to Kubernetes
+      - name: Deploy to Minikube
         run: |
-           kubectl apply -f deployment.yaml
+          kubectl apply -f deployment.yaml
