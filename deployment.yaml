@@ -1,4 +1,3 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,6 +14,6 @@ spec:
     spec:
       containers:
       - name: my-python-app
-        image: your-docker-image:latest
+        image: ziadmamdouh88/ci-cd-test:latest  # Update this line
         ports:
         - containerPort: 8080
