@@ -16,8 +16,7 @@ jobs:
 
       # Set Git Safe Directory
       - name: Set Git Safe Directory
-        run: git config --global --add safe.directory D:/actions-runner/_work/ci-cd-test/ci-cd-test
-
+        run: powershell.exe -command "Set-ExecutionPolicy Bypass -Scope Process -Force; git config --global --add safe.directory D:/actions-runner/_work/ci-cd-test/ci-cd-test"
       # Checkout code from the repository
       - name: Checkout code
         uses: actions/checkout@v2
